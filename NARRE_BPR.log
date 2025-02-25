@@ -1,0 +1,386 @@
+Training with hyperparameters: {'lr': 0.001, 'kernel_size': 3, 'word_dim': 200}
+load npy from dist...
+*************************************************
+user config:
+vocab_size => 50001
+word_dim => 200
+r_max_len => 202
+u_max_r => 13
+i_max_r => 24
+train_data_size => 51764
+test_data_size => 6471
+val_data_size => 6471
+user_num => 5543
+item_num => 3570
+batch_size => 64
+print_step => 100
+*************************************************
+loading train data
+loading val data
+train data: 51508; test data: 6471
+start training....
+2024-11-21 15:52:04.449659  Epoch 0...
+	Training data: total loss: 35088.9111, avg loss: 0.6812
+Digital_Music_data | default
+Model saved with [Recall: -25.5167] and [Loss: 35088.9111]
+******************************
+2024-11-21 15:53:11.464878  Epoch 1...
+	Training data: total loss: 30012.8096, avg loss: 0.5827
+******************************
+2024-11-21 15:54:17.999039  Epoch 2...
+	Training data: total loss: 28201.3254, avg loss: 0.5475
+Digital_Music_data | default
+Model saved with [Recall: -27.3167] and [Loss: 28201.3254]
+******************************
+2024-11-21 15:55:24.181924  Epoch 3...
+	Training data: total loss: 27745.1730, avg loss: 0.5387
+Digital_Music_data | default
+Model saved with [Recall: -28.8923] and [Loss: 27745.1730]
+******************************
+2024-11-21 15:56:30.653299  Epoch 4...
+	Training data: total loss: 27463.9547, avg loss: 0.5332
+Digital_Music_data | default
+Model saved with [Recall: -31.7667] and [Loss: 27463.9547]
+******************************
+2024-11-21 15:57:39.893109  Epoch 5...
+	Training data: total loss: 27195.4002, avg loss: 0.5280
+Digital_Music_data | default
+Model saved with [Recall: -34.2358] and [Loss: 27195.4002]
+******************************
+2024-11-21 15:58:47.481861  Epoch 6...
+	Training data: total loss: 27124.6943, avg loss: 0.5266
+******************************
+2024-11-21 15:59:54.377483  Epoch 7...
+	Training data: total loss: 27106.7091, avg loss: 0.5263
+Digital_Music_data | default
+Model saved with [Recall: -36.6833] and [Loss: 27106.7091]
+******************************
+2024-11-21 16:01:01.152825  Epoch 8...
+	Training data: total loss: 27063.0211, avg loss: 0.5254
+******************************
+2024-11-21 16:02:07.542759  Epoch 9...
+	Training data: total loss: 27033.5775, avg loss: 0.5248
+******************************
+2024-11-21 16:03:14.622546  Epoch 10...
+	Training data: total loss: 26837.0390, avg loss: 0.5210
+******************************
+2024-11-21 16:04:20.717786  Epoch 11...
+	Training data: total loss: 26785.0933, avg loss: 0.5200
+******************************
+2024-11-21 16:05:26.944238  Epoch 12...
+	Training data: total loss: 26763.1135, avg loss: 0.5196
+******************************
+2024-11-21 16:06:33.462013  Epoch 13...
+	Training data: total loss: 26739.6544, avg loss: 0.5191
+******************************
+2024-11-21 16:07:39.902914  Epoch 14...
+	Training data: total loss: 26723.0590, avg loss: 0.5188
+******************************
+2024-11-21 16:08:46.458386  Epoch 15...
+	Training data: total loss: 26571.3186, avg loss: 0.5159
+******************************
+2024-11-21 16:09:52.569271  Epoch 16...
+	Training data: total loss: 26627.7941, avg loss: 0.5170
+******************************
+2024-11-21 16:10:59.816038  Epoch 17...
+	Training data: total loss: 26596.0478, avg loss: 0.5163
+******************************
+2024-11-21 16:12:06.768327  Epoch 18...
+	Training data: total loss: 26540.6520, avg loss: 0.5153
+******************************
+2024-11-21 16:13:13.072036  Epoch 19...
+	Training data: total loss: 26492.0481, avg loss: 0.5143
+******************************
+2024-11-21 16:14:19.730645  Epoch 20...
+	Training data: total loss: 26431.2095, avg loss: 0.5131
+******************************
+2024-11-21 16:15:25.880296  Epoch 21...
+	Training data: total loss: 26424.9267, avg loss: 0.5130
+******************************
+2024-11-21 16:16:32.196581  Epoch 22...
+	Training data: total loss: 26388.8481, avg loss: 0.5123
+******************************
+2024-11-21 16:17:39.264926  Epoch 23...
+	Training data: total loss: 26413.1750, avg loss: 0.5128
+******************************
+2024-11-21 16:18:45.363995  Epoch 24...
+	Training data: total loss: 26415.5361, avg loss: 0.5128
+******************************
+2024-11-21 16:19:51.967883  Epoch 25...
+	Training data: total loss: 26324.0114, avg loss: 0.5111
+******************************
+2024-11-21 16:20:58.542221  Epoch 26...
+	Training data: total loss: 26355.1880, avg loss: 0.5117
+******************************
+2024-11-21 16:22:04.876043  Epoch 27...
+	Training data: total loss: 26330.5642, avg loss: 0.5112
+******************************
+2024-11-21 16:23:11.555739  Epoch 28...
+	Training data: total loss: 26303.0514, avg loss: 0.5107
+******************************
+2024-11-21 16:24:18.751456  Epoch 29...
+	Training data: total loss: 26352.3946, avg loss: 0.5116
+******************************
+2024-11-21 16:25:25.266577  Epoch 30...
+	Training data: total loss: 26211.6521, avg loss: 0.5089
+******************************
+2024-11-21 16:26:31.741885  Epoch 31...
+	Training data: total loss: 26254.1234, avg loss: 0.5097
+******************************
+2024-11-21 16:27:38.435110  Epoch 32...
+	Training data: total loss: 26288.1442, avg loss: 0.5104
+******************************
+2024-11-21 16:28:45.138380  Epoch 33...
+	Training data: total loss: 26263.0434, avg loss: 0.5099
+******************************
+2024-11-21 16:29:51.895197  Epoch 34...
+	Training data: total loss: 26244.9448, avg loss: 0.5095
+******************************
+2024-11-21 16:30:58.980910  Epoch 35...
+	Training data: total loss: 26105.4144, avg loss: 0.5068
+******************************
+2024-11-21 16:32:05.999464  Epoch 36...
+	Training data: total loss: 26229.9855, avg loss: 0.5092
+******************************
+2024-11-21 16:33:13.040400  Epoch 37...
+	Training data: total loss: 26150.8663, avg loss: 0.5077
+******************************
+2024-11-21 16:34:19.707792  Epoch 38...
+	Training data: total loss: 26210.8751, avg loss: 0.5089
+******************************
+2024-11-21 16:35:26.880894  Epoch 39...
+	Training data: total loss: 26178.7036, avg loss: 0.5082
+******************************
+2024-11-21 16:36:34.153602  Epoch 40...
+	Training data: total loss: 26134.3516, avg loss: 0.5074
+******************************
+2024-11-21 16:37:41.650990  Epoch 41...
+	Training data: total loss: 26193.5137, avg loss: 0.5085
+******************************
+2024-11-21 16:38:49.049011  Epoch 42...
+	Training data: total loss: 26141.0773, avg loss: 0.5075
+******************************
+2024-11-21 16:39:54.683629  Epoch 43...
+	Training data: total loss: 26099.7036, avg loss: 0.5067
+******************************
+2024-11-21 16:41:01.901871  Epoch 44...
+	Training data: total loss: 26103.0054, avg loss: 0.5068
+******************************
+2024-11-21 16:42:08.600318  Epoch 45...
+	Training data: total loss: 26039.2558, avg loss: 0.5055
+******************************
+2024-11-21 16:43:15.029769  Epoch 46...
+	Training data: total loss: 26091.3591, avg loss: 0.5065
+******************************
+2024-11-21 16:44:22.193341  Epoch 47...
+	Training data: total loss: 26051.7987, avg loss: 0.5058
+******************************
+2024-11-21 16:45:29.057006  Epoch 48...
+	Training data: total loss: 26019.1076, avg loss: 0.5051
+******************************
+2024-11-21 16:46:34.567448  Epoch 49...
+	Training data: total loss: 26084.6277, avg loss: 0.5064
+******************************
+2024-11-21 16:47:41.518278  Epoch 50...
+	Training data: total loss: 26031.1562, avg loss: 0.5054
+******************************
+2024-11-21 16:48:48.568682  Epoch 51...
+	Training data: total loss: 26023.8598, avg loss: 0.5052
+******************************
+2024-11-21 16:49:55.303485  Epoch 52...
+	Training data: total loss: 26067.4007, avg loss: 0.5061
+******************************
+2024-11-21 16:51:01.551585  Epoch 53...
+	Training data: total loss: 26050.8207, avg loss: 0.5058
+******************************
+2024-11-21 16:52:07.876322  Epoch 54...
+	Training data: total loss: 26016.8453, avg loss: 0.5051
+******************************
+2024-11-21 16:59:13.972013  Epoch 55...
+	Training data: total loss: 26033.1066, avg loss: 0.5054
+******************************
+2024-11-21 17:07:44.957533  Epoch 56...
+	Training data: total loss: 26007.1597, avg loss: 0.5049
+******************************
+2024-11-21 17:16:26.791072  Epoch 57...
+	Training data: total loss: 25962.4803, avg loss: 0.5040
+******************************
+2024-11-21 17:25:23.978420  Epoch 58...
+	Training data: total loss: 26068.6721, avg loss: 0.5061
+******************************
+2024-11-21 17:34:16.015675  Epoch 59...
+	Training data: total loss: 26020.9614, avg loss: 0.5052
+******************************
+2024-11-21 17:43:16.166480  Epoch 60...
+	Training data: total loss: 25996.7140, avg loss: 0.5047
+Digital_Music_data | default
+Model saved with [Recall: -36.8899] and [Loss: 25996.7140]
+******************************
+2024-11-21 17:50:14.309672  Epoch 61...
+	Training data: total loss: 26029.2489, avg loss: 0.5053
+******************************
+2024-11-21 17:58:42.925725  Epoch 62...
+	Training data: total loss: 25976.8583, avg loss: 0.5043
+******************************
+2024-11-21 18:07:20.691362  Epoch 63...
+	Training data: total loss: 25984.1166, avg loss: 0.5045
+******************************
+2024-11-21 18:15:54.741986  Epoch 64...
+	Training data: total loss: 26015.9723, avg loss: 0.5051
+******************************
+2024-11-21 18:24:29.895202  Epoch 65...
+	Training data: total loss: 25997.0206, avg loss: 0.5047
+******************************
+2024-11-21 18:33:00.374510  Epoch 66...
+	Training data: total loss: 25999.8751, avg loss: 0.5048
+******************************
+2024-11-21 18:41:27.861464  Epoch 67...
+	Training data: total loss: 25967.1062, avg loss: 0.5041
+******************************
+2024-11-21 18:49:48.592689  Epoch 68...
+	Training data: total loss: 26014.3400, avg loss: 0.5051
+******************************
+2024-11-21 18:58:15.990054  Epoch 69...
+	Training data: total loss: 25981.4235, avg loss: 0.5044
+******************************
+2024-11-21 19:06:48.782701  Epoch 70...
+	Training data: total loss: 25976.1842, avg loss: 0.5043
+******************************
+2024-11-21 19:15:21.438373  Epoch 71...
+	Training data: total loss: 25957.7079, avg loss: 0.5040
+******************************
+2024-11-21 19:23:49.104062  Epoch 72...
+	Training data: total loss: 25977.9103, avg loss: 0.5043
+******************************
+2024-11-21 19:32:16.901903  Epoch 73...
+	Training data: total loss: 26041.1453, avg loss: 0.5056
+Digital_Music_data | default
+Model saved with [Recall: -37.6750] and [Loss: 26041.1453]
+******************************
+2024-11-21 19:38:04.028178  Epoch 74...
+	Training data: total loss: 25952.1211, avg loss: 0.5038
+******************************
+2024-11-21 19:46:36.626142  Epoch 75...
+	Training data: total loss: 25938.1950, avg loss: 0.5036
+******************************
+2024-11-21 19:55:06.795244  Epoch 76...
+	Training data: total loss: 25970.3379, avg loss: 0.5042
+******************************
+2024-11-21 20:03:34.948878  Epoch 77...
+	Training data: total loss: 25891.9201, avg loss: 0.5027
+Digital_Music_data | default
+Model saved with [Recall: -38.0333] and [Loss: 25891.9201]
+******************************
+2024-11-21 20:12:10.163321  Epoch 78...
+	Training data: total loss: 25996.1286, avg loss: 0.5047
+******************************
+2024-11-21 20:20:43.154400  Epoch 79...
+	Training data: total loss: 25961.6421, avg loss: 0.5040
+Digital_Music_data | default
+Model saved with [Recall: -40.5418] and [Loss: 25961.6421]
+******************************
+2024-11-21 20:29:16.450418  Epoch 80...
+	Training data: total loss: 25949.2568, avg loss: 0.5038
+******************************
+2024-11-21 20:35:00.959731  Epoch 81...
+	Training data: total loss: 25945.2726, avg loss: 0.5037
+******************************
+2024-11-21 20:43:30.739729  Epoch 82...
+	Training data: total loss: 25950.2486, avg loss: 0.5038
+******************************
+2024-11-21 20:52:04.076154  Epoch 83...
+	Training data: total loss: 25962.2798, avg loss: 0.5040
+******************************
+2024-11-21 21:00:31.528911  Epoch 84...
+	Training data: total loss: 25931.6714, avg loss: 0.5034
+******************************
+2024-11-21 21:08:58.883535  Epoch 85...
+	Training data: total loss: 25936.0382, avg loss: 0.5035
+******************************
+2024-11-21 21:17:32.155395  Epoch 86...
+	Training data: total loss: 25895.3365, avg loss: 0.5027
+******************************
+2024-11-21 21:25:51.871703  Epoch 87...
+	Training data: total loss: 25982.9166, avg loss: 0.5044
+******************************
+2024-11-21 21:34:19.431608  Epoch 88...
+	Training data: total loss: 25988.8614, avg loss: 0.5046
+******************************
+2024-11-21 21:42:52.081184  Epoch 89...
+	Training data: total loss: 25937.3338, avg loss: 0.5036
+******************************
+2024-11-21 21:51:30.201201  Epoch 90...
+	Training data: total loss: 25957.7243, avg loss: 0.5040
+******************************
+2024-11-21 22:00:07.341191  Epoch 91...
+	Training data: total loss: 25929.2785, avg loss: 0.5034
+******************************
+2024-11-21 22:08:43.423590  Epoch 92...
+	Training data: total loss: 25914.3447, avg loss: 0.5031
+******************************
+2024-11-21 22:17:18.472311  Epoch 93...
+	Training data: total loss: 25946.5245, avg loss: 0.5037
+******************************
+2024-11-21 22:23:09.230837  Epoch 94...
+	Training data: total loss: 25925.3621, avg loss: 0.5033
+******************************
+2024-11-21 22:31:38.968610  Epoch 95...
+	Training data: total loss: 25959.7809, avg loss: 0.5040
+******************************
+2024-11-21 22:40:08.954718  Epoch 96...
+	Training data: total loss: 25964.3429, avg loss: 0.5041
+******************************
+2024-11-21 22:48:39.528577  Epoch 97...
+	Training data: total loss: 25899.5309, avg loss: 0.5028
+******************************
+2024-11-21 22:57:14.877851  Epoch 98...
+	Training data: total loss: 25998.0970, avg loss: 0.5047
+******************************
+2024-11-21 23:05:45.401317  Epoch 99...
+	Training data: total loss: 25951.1078, avg loss: 0.5038
+******************************
+--------------------------------------------------------------------------------
+Inizio calcolo Recall [2024-11-21 23:14:12.589666]
+Traceback (most recent call last):
+  File "/home/ironman/projects/sir_ranking/main.py", line 574, in <module>
+    grid_search(**args("NARRE_train_BPR"))
+  File "/home/ironman/projects/sir_ranking/main.py", line 435, in grid_search
+    result, dataset, print_opt = train_bpr(**combination, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/projects/sir_ranking/BPR.py", line 126, in train_bpr
+    neg_recall, _ = predict_bpr(model, val_data, opt, U=-1, N=-1)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/projects/sir_ranking/BPR.py", line 184, in predict_bpr
+    Y = model(x)
+        ^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/projects/sir_ranking/framework/models.py", line 38, in forward
+    user_feature, item_feature = self.net(datas)
+                                 ^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/projects/sir_ranking/models/narre.py", line 34, in forward
+    i_fea = self.item_net(item_reviews, iids, item_user2id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/projects/sir_ranking/models/narre.py", line 84, in forward
+    fea = F.relu(self.cnn(reviews.unsqueeze(1))).squeeze(3)  # .permute(0, 2, 1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ironman/.conda/envs/IR_Project/lib/python3.11/site-packages/torch/nn/functional.py", line 1500, in relu
+    result = torch.relu(input)
+             ^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.37 GiB. GPU 
