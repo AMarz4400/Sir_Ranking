@@ -17,7 +17,9 @@ MAX_DF = 0.7
 MAX_VOCAB = 50000
 DOC_LEN = 500
 PRE_W2V_BIN_PATH = ""  # the pre-trained word2vec files
-WORD_DIM = [200, 300, 500, 100]
+SUFFIX = ""
+FILTERING = True
+RANDOM_STATE = 242
 
 
 def now():
@@ -56,7 +58,7 @@ def clean_str(string):
     return string.strip().lower()
 
 
-def bulid_vocbulary(xDict):
+def build_vocabulary(xDict):
     rawReviews = []
     for (id, text) in xDict.items():
         rawReviews.append(' '.join(text))
@@ -145,43 +147,6 @@ def countNum(xDict):
 
     return minNum, maxNum, averageNum, maxSent, minSent, pReviewLen, pSentLen
 
-    # #####################################################w2v############################################
-
-
-def w2v_embedding(path, word_dim=300, PRE_W2V_BIN_PATH=None):
-    with open(path, 'r') as file:
-        word_index = json.load(file)
-
-    print("-" * 60)
-    print(f"{now()} Step5: start word embedding mapping...")
-    vocab_item = sorted(word_index.items(), key=itemgetter(1))
-    w2v = []
-    out = 0
-
-    if PRE_W2V_BIN_PATH:
-        pre_word2v = gensim.models.KeyedVectors.load_word2vec_format(PRE_W2V_BIN_PATH, binary=True)
-    else:
-        pre_word2v = {}
-
-    print(f"{now()} 开始提取embedding")
-    for word, key in vocab_item:
-        if word in pre_word2v:
-            w2v.append(pre_word2v[word])
-        else:
-            out += 1
-            w2v.append(np.random.uniform(-1.0, 1.0, (word_dim,)))
-
-    print("############################")
-    print(f"out of vocab: {out}")
-    # print w2v[1000]
-    print(f"w2v size: {len(w2v)}")
-    print("############################")
-    w2vArray = np.array(w2v)
-    print(w2vArray.shape)
-    np.save(f"{save_folder}/train/w2v_" + str(word_dim) + ".npy", w2v)
-    end_time = time.time()
-    print(f"{now()} all steps finised, cost time: {end_time - start_time:.4f}s")
-
 
 if __name__ == '__main__':
 
@@ -197,12 +162,8 @@ if __name__ == '__main__':
     else:
         # amazon dataset
         save_folder = '../dataset/' + filename[:-7] + "_data"
-    print(f"数据集名称：{save_folder}")
-
-    if len(sys.argv) > 3:
-        word_dim = int(sys.argv[3])
-    else:
-        word_dim = 300  # Default value if not provided
+    save_folder += SUFFIX
+    print(f"Dataset name：{save_folder}")
 
     if not os.path.exists(save_folder + '/train'):
         os.makedirs(save_folder + '/train')
@@ -236,13 +197,13 @@ if __name__ == '__main__':
                 print("unknown user id")
                 continue
             if str(js['asin']) == 'unknown':
-                print("unkown item id")
+                print("unknown item id")
                 continue
             try:
                 reviews.append(js['reviewText'])
                 users_id.append(str(js['reviewerID']))
                 items_id.append(str(js['asin']))
-                ratings.append(str(js['overall']))
+                ratings.append(float(js['overall']))
             except:
                 continue
 
@@ -250,6 +211,9 @@ if __name__ == '__main__':
                   'ratings': pd.Series(ratings), 'reviews': pd.Series(reviews)}
     data = pd.DataFrame(data_frame)  # [['user_id', 'item_id', 'ratings', 'reviews']]
     del users_id, items_id, ratings, reviews
+
+    if FILTERING:
+        data = data[data['ratings'] >= 4]
 
     uidList, iidList = get_count(data, 'user_id'), get_count(data, 'item_id')
     userNum_all = len(uidList)
@@ -266,8 +230,8 @@ if __name__ == '__main__':
     data = numerize(data)
 
     print(f"-" * 60)
-    print(f"{now()} Step2: split datsets into train/val/test, save into npy data")
-    data_train, data_test = train_test_split(data, test_size=0.2, random_state=1234)
+    print(f"{now()} Step2: split datasets into train/val/test, save into npy data")
+    data_train, data_test = train_test_split(data, test_size=0.2, random_state=RANDOM_STATE)
     uids_train, iids_train = get_count(data_train, 'user_id'), get_count(data_train, 'item_id')
     userNum = len(uids_train)
     itemNum = len(iids_train)
@@ -277,32 +241,24 @@ if __name__ == '__main__':
     print("itemNum: {}".format(itemNum))
     print("===============End: no-preprocess: trainData size========================")
 
-    uidMiss = []
-    iidMiss = []
-    if userNum != userNum_all or itemNum != itemNum_all:
-        for uid in range(userNum_all):
-            if uid not in uids_train:
-                uidMiss.append(uid)
-        for iid in range(itemNum_all):
-            if iid not in iids_train:
-                iidMiss.append(iid)
-    uid_index = []
-    for uid in uidMiss:
-        index = data_test.index[data_test['user_id'] == uid].tolist()
-        uid_index.extend(index)
-    data_train = pd.concat([data_train, data_test.loc[uid_index]])
+    # Items
+    item_missing = set(data_test['item_id']) - set(data_train['item_id'])
+    miss_item = data_test[data_test['item_id'].isin(item_missing)]
+    data_test = data_test[~data_test['item_id'].isin(item_missing)]
+    del item_missing
+    data_train = pd.concat([data_train, miss_item], ignore_index=True)
+    del miss_item
 
-    iid_index = []
-    for iid in iidMiss:
-        index = data_test.index[data_test['item_id'] == iid].tolist()
-        iid_index.extend(index)
-    data_train = pd.concat([data_train, data_test.loc[iid_index]])
+    # Users
+    user_missing = set(data_test['user_id']) - set(data_train['user_id'])
+    miss_user = data_test[data_test['user_id'].isin(user_missing)]
+    data_test = data_test[~data_test['item_id'].isin(miss_user)]
+    del user_missing
+    data_train = pd.concat([data_train, miss_user], ignore_index=True)
+    del miss_user
 
-    all_index = list(set().union(uid_index, iid_index))
-    data_test = data_test.drop(all_index)
-
-    # split validate set aand test set
-    data_test, data_val = train_test_split(data_test, test_size=0.5, random_state=1234)
+    # split validate set and test set
+    data_test, data_val = train_test_split(data_test, test_size=0.5, random_state=RANDOM_STATE)
     uidList_train, iidList_train = get_count(data_train, 'user_id'), get_count(data_train, 'item_id')
     userNum = len(uidList_train)
     itemNum = len(iidList_train)
@@ -382,16 +338,27 @@ if __name__ == '__main__':
 
     print(now())
     u_minNum, u_maxNum, u_averageNum, u_maxSent, u_minSent, u_pReviewLen, u_pSentLen = countNum(user_reviews_dict)
-    print("用户最少有{}个评论,最多有{}个评论，平均有{}个评论, " \
-          "句子最大长度{},句子的最短长度{}，" \
-          "设定用户评论个数为{}： 设定句子最大长度为{}".format(u_minNum, u_maxNum, u_averageNum, u_maxSent, u_minSent,
-                                                              u_pReviewLen, u_pSentLen))
+
+    print("The minimum number of comments per user is {}, the maximum is {}, and the average is {}. " \
+          "The maximum sentence length is {}, and the minimum sentence length is {}. " \
+          "Setting the number of user comments to {} and the maximum sentence length to {}.".format(u_minNum, u_maxNum,
+                                                                                                    u_averageNum,
+                                                                                                    u_maxSent,
+                                                                                                    u_minSent,
+                                                                                                    u_pReviewLen,
+                                                                                                    u_pSentLen))
     i_minNum, i_maxNum, i_averageNum, i_maxSent, i_minSent, i_pReviewLen, i_pSentLen = countNum(item_reviews_dict)
-    print("商品最少有{}个评论,最多有{}个评论，平均有{}个评论," \
-          "句子最大长度{},句子的最短长度{}," \
-          ",设定商品评论数目{}, 设定句子最大长度为{}".format(i_minNum, i_maxNum, i_averageNum, u_maxSent, i_minSent,
-                                                             i_pReviewLen, i_pSentLen))
-    print("最终设定句子最大长度为(取最大值)：{}".format(max(u_pSentLen, i_pSentLen)))
+    print("The minimum number of comments per item is {}, the maximum is {}, and the average is {}. " \
+          "The maximum sentence length is {}, and the minimum sentence length is {}. " \
+          "Setting the number of item comments to {} and the maximum sentence length to {}.".format(i_minNum, i_maxNum,
+                                                                                                    i_averageNum,
+                                                                                                    u_maxSent,
+                                                                                                    i_minSent,
+                                                                                                    i_pReviewLen,
+                                                                                                    i_pSentLen))
+    print("The final maximum sentence length (taking the maximum value) is set to: {}".format(
+        max(u_pSentLen, i_pSentLen)))
+
     # ########################################################################################################
     maxSentLen = max(u_pSentLen, i_pSentLen)
     minSentlen = 1
@@ -508,10 +475,32 @@ if __name__ == '__main__':
     np.save(f"{save_folder}/train/item_user2id.npy", item_uid_list)
     np.save(f"{save_folder}/train/itemDoc2Index.npy", itemDoc2Index)
 
-    path = os.path.join(save_folder, "word_index.json")
+    print(f"{now()} write finised")
 
-    with open(path, 'w') as file:
-        json.dump(word_index, file)
-
-    for size in WORD_DIM:
-        w2v_embedding(path, word_dim=size, PRE_W2V_BIN_PATH=PRE_W2V_BIN_PATH)
+    # #####################################################3,产生w2v############################################
+    print("-" * 60)
+    print(f"{now()} Step5: start word embedding mapping...")
+    vocab_item = sorted(word_index.items(), key=itemgetter(1))
+    w2v = []
+    out = 0
+    if PRE_W2V_BIN_PATH:
+        pre_word2v = gensim.models.KeyedVectors.load_word2vec_format(PRE_W2V_BIN_PATH, binary=True)
+    else:
+        pre_word2v = {}
+    print(f"{now()} Start extracting embedding")
+    for word, key in vocab_item:
+        if word in pre_word2v:
+            w2v.append(pre_word2v[word])
+        else:
+            out += 1
+            w2v.append(np.random.uniform(-1.0, 1.0, (300,)))
+    print("############################")
+    print(f"out of vocab: {out}")
+    # print w2v[1000]
+    print(f"w2v size: {len(w2v)}")
+    print("############################")
+    w2vArray = np.array(w2v)
+    print(w2vArray.shape)
+    np.save(f"{save_folder}/train/w2v.npy", w2v)
+    end_time = time.time()
+    print(f"{now()} all steps finised, cost time: {end_time - start_time:.4f}s")
