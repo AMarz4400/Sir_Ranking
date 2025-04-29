@@ -559,6 +559,7 @@ def args(type=None):
 
 
 if __name__ == "__main__":
+    fire.Fire()
     # foo = args("train")
     # train(**args("DeepCoNN_train"))
     # train_bpr(**args("DeepCoNN_train"))
@@ -571,7 +572,7 @@ if __name__ == "__main__":
     # DF.sort_values(by='output', inplace=True, ascending=False)
     # top = DF.head(10)
     # top_predictions_for_user(DF)
-    grid_search(**args("NARRE_train_BPR"))
+    # grid_search(**args("NARRE_train_BPR"))
 
     #from BPR import test_bpr
 
@@ -584,6 +585,6 @@ if __name__ == "__main__":
     #print("Valore di Precisione Media [ " + str(avg_precision) + " ]")
     # print("Valore di Hit Rate Media [ " + str(avg_hit_rate) + " ]")
     # print("Valore di AUC Media [ " + str(avg_auc) + " ]")
-#    print("Valore di Predict Loss [ " + str(predict_loss) + " ]")
-#    print("Valore di Test MSE [ " + str(test_mse) + " ]")
-#    print("Valore di Test MAE [ " + str(test_mae) + " ]")
+    # print("Valore di Predict Loss [ " + str(predict_loss) + " ]")
+    # print("Valore di Test MSE [ " + str(test_mse) + " ]")
+    # print("Valore di Test MAE [ " + str(test_mae) + " ]")
