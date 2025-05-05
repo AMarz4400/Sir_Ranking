@@ -17,6 +17,8 @@ module load profile/deeplrn
 module load cuda/12.1
 #module load gcc/12.2.0-cuda-12.1
 module load python/3.10.8--gcc--11.3.0
+mkdir -p logs/Toys_and_Games
+mkdir -p checkpoints
 
 source $HOME/Sir_Ranking/venv310/bin/activate
 
