@@ -123,7 +123,7 @@ def train_bpr(**kwargs):
 # Report finale
     print("----" * 20)
     print(f"Inizio calcolo Recall [{now()}]")
-    neg_recall, _ = predict_bpr(model, val_data, opt, U=-1, N=-1)
+    neg_recall, _ = predict_bpr(model, val_data, opt, U=1600, N=1024)
     print(f"Fine calcolo Recall [{now()}]")
     print("----" * 20)
     print(f"{opt.dataset} {opt.print_opt} best_res: {neg_recall}")

@@ -336,7 +336,7 @@ def grid_hyperparameters():
     hyperparameters = {
         "lr": [1e-3, 2e-3, 1e-2],  # Learning Rate
         "kernel_size": [3, 4, 5],  # "t" window size
-        "word_dim": [200, 300],  # "c" dimension word embedding
+        "word_dim": [200, 300, 500],  # "c" dimension word embedding
         # dropout       = 0.5
         # weight_decay  = 1e-3
         # optimizer     = AdamW
@@ -358,6 +358,7 @@ def swap_best_model(dataset, print_opt, model):
 
 
 def grid_search(**kwargs):
+
     model = "DeepCoNN"
     if "model" in kwargs:
         model = kwargs["model"]
@@ -367,11 +368,17 @@ def grid_search(**kwargs):
         setup = kwargs["setup"]
         del kwargs["setup"]
 
-    os.makedirs("./grid/", exist_ok=True)
+    kwargs['print_opt'] = setup
+    datas = False
+    if "dataset" in kwargs:
+        datas = kwargs["dataset"]
 
-    grid_info = grid_filename(model=model, new_grid=False)
+    os.makedirs("./grid/" + datas, exist_ok=True)
+
+    tmp = model + "_" + setup
+    grid_info = grid_filename(model=tmp, new_grid=False, datas=datas)
     save_name = grid_info
-    grid_info = "./grid/" + grid_info
+    grid_info = "./grid/" + datas + "/" + grid_info
 
     grid_txt = grid_info + ".txt"
     grid_json = grid_info + ".json"
@@ -499,7 +506,7 @@ def grid_search(**kwargs):
     with open(grid_txt, 'a') as file:
         file.write(ending_info)
 
-    finished = "./grid/finished/"
+    finished = "./grid/"+datas+"finished/"
     os.makedirs(finished, exist_ok=True)
 
     shutil.move(grid_txt, finished + save_name + ".txt")
@@ -517,7 +524,8 @@ def args(type=None):
             'num_fea': 1,
             'output': 'fm',
             'use_gpu': True,
-            'setup': 'BPR'
+            'setup': 'BPR',
+            'dataset': 'Toys_and_Games_data'
         }
 
     if type == "NARRE_train_BPR":
@@ -563,6 +571,7 @@ if __name__ == "__main__":
     # foo = args("train")
     # train(**args("DeepCoNN_train"))
     # train_bpr(**args("DeepCoNN_train"))
+    # grid_search(**args('DeepCoNN_train'))
     # start = int(time.time())
     # grid_filename(model="NARRE")
     # resume_grid(grid="DeepCoNN_2024_07_11___15_14_15.txt",)

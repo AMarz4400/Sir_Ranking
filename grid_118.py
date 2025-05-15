@@ -16,7 +16,7 @@ from framework import Model
 import json
 
 
-def grid_filename(model, new_grid=True):
+def grid_filename(model, new_grid=True, datas=""):
     from main import now
 
     def prefix_search(folder, prefix):
@@ -30,7 +30,8 @@ def grid_filename(model, new_grid=True):
 
     grid = model + "_"
 
-    files = prefix_search(folder="./grid/", prefix=grid)
+    tmp = "./grid/" + datas + "/"
+    files = prefix_search(folder=tmp, prefix=grid)
 
     if new_grid:
         files = []
